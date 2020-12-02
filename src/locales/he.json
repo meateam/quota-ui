@@ -1,0 +1,23 @@
+{
+  "title": "עדכון אחסון למשתמש",
+  "autocomplete": {
+    "NoResult": "לא נמצאו תוצאות",
+    "Drive": "חיפוש בדרייב...",
+    "Users": "הוסיפו אנשים..."
+  },
+  "required": "שדה חובה",
+  "numericValue": "שדה מספרי",
+  "dialog": {
+    "title": "אישור הגדלת אחסון",
+    "amount": "כמות",
+    "to": "ל",
+    "approve": "אישור",
+    "reject": "דחיה"
+  },
+  "navbar": {
+    "search": "חיפוש",
+    "pendingRequests": "בקשות ממתינות",
+    "rejectedRequests": "בקשות שנדחו",
+    "approvedRequests": "בקשות שאושרו"
+  }
+}

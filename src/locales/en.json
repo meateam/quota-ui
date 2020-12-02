@@ -1,0 +1,23 @@
+{
+  "title": "approve and reject quota modification",
+  "autocomplete": {
+    "NoResult": "no results...",
+    "Drive": "search in drive...",
+    "Users": "add users..."
+  },
+  "required": "Required",
+  "numericValue": "must be a number",
+  "dialog": {
+    "title": "approve quota modification",
+    "amount": "amount",
+    "to": "to",
+    "approve": "approve",
+    "reject": "reject"
+  },
+  "navbar": {
+    "search": "Search",
+    "pendingRequests": "Pending Requests",
+    "rejectedRequests": "Rejected Requests",
+    "approvedRequests": "Approved Requests"
+  }
+}
