@@ -1,17 +1,24 @@
 import Axios from "axios";
-import { baseURL } from "@/config";
 import { RequestStatus } from "@/utils/api.const";
 
-async function updateUserQuotaRequest(status, userId) {
-  return Axios.post(`${baseURL}/api/quota-approval`, {
-    params: { status, userId },
-  });
+const quotaApprovalRoute = "/api/quota/approval";
+
+async function updateUserQuotaRequest(status, requestId) {
+    return Axios.post(quotaApprovalRoute, {
+        params: { status, id: requestId },
+    });
 }
 
-export async function approveUserQuota(userId) {
-  return updateUserQuotaRequest(RequestStatus.APPROVED, userId);
+export async function approveUserQuota(requestId) {
+    return updateUserQuotaRequest(RequestStatus.APPROVED, requestId);
 }
 
-export async function rejectUserQuota(userId) {
-  return updateUserQuotaRequest(RequestStatus.DENIED, userId);
+export async function rejectUserQuota(requestId) {
+    return updateUserQuotaRequest(RequestStatus.DENIED, requestId);
+}
+
+export async function createApprovedQuota(size, info) {
+    return Axios.post(quotaApprovalRoute, {
+        params: { size, info },
+    });
 }
