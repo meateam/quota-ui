@@ -3,14 +3,17 @@
   "autocomplete": {
     "NoResult": "לא נמצאו תוצאות",
     "Drive": "חיפוש בדרייב...",
-    "Users": "הוסיפו אנשים..."
+    "Users": "חפשו אנשים..."
   },
   "required": "שדה חובה",
   "numericValue": "שדה מספרי",
   "dialog": {
     "title": "אישור הגדלת אחסון",
     "amount": "כמות",
-    "to": "ל",
+    "username": "שם המשתמש",
+    "unit": "יחידה",
+    "rank": "דרגה",
+    "info": "תיאור הסיבה",
     "approve": "אישור",
     "reject": "דחיה"
   },

@@ -2,15 +2,15 @@
 
 import Vue from "vue";
 import axios from "axios";
+import store from "@/store";
 import { baseURL } from "@/config";
 
-const config = {
-    baseURL,
-    timeout: 60 * 1000, // Timeout
-    withCredentials: true, // Check cross-site Access-Control
-};
+// Full config:  https://github.com/axios/axios#request-config
+axios.defaults.baseURL = baseURL;
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-const _axios = axios.create(config);
+const _axios = axios.create();
 
 _axios.interceptors.request.use(
     function(request) {
@@ -24,7 +24,7 @@ _axios.interceptors.request.use(
     }
 );
 
-Plugin.install = function(Vue, _options) {
+Plugin.install = function(Vue) {
     Vue.axios = _axios;
     window.axios = _axios;
     Object.defineProperties(Vue.prototype, {

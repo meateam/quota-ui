@@ -10,7 +10,10 @@
   "dialog": {
     "title": "approve quota modification",
     "amount": "amount",
-    "to": "to",
+    "username": "Username",
+    "unit": "Unit",
+    "rank": "Rank",
+    "info": "description",
     "approve": "approve",
     "reject": "reject"
   },

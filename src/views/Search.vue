@@ -10,7 +10,7 @@
       icon="mdi-magnify"
       class="autocomplete"
     />
-    <Dialog :dialog="dialog" :user="selectedUser" />
+    <Dialog v-if="selectedUser" :dialog="dialog" :user="selectedUser" />
   </div>
 </template>
 
@@ -35,6 +35,7 @@ export default {
   },
   methods: {
     getUsersByName(name) {
+      this.dialog = true;
       if (this.isLoading) return;
       this.isLoading = true;
       usersApi

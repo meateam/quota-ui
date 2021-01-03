@@ -1,6 +1,6 @@
 <template>
   <div class="dialog">
-    <v-dialog v-model="dialog" width="500px" height="500px">
+    <v-dialog v-model="dialog" width="800px" height="800px">
       <v-card>
         <v-card-title>{{ $t("dialog.title") }}</v-card-title>
 
@@ -11,17 +11,29 @@
             hide-details="auto"
             dense
             appendIcon="GB"
+            v-model="size"
+            class="ma-5"
           ></v-text-field>
-          <p v-if="user">{{ `${$t("dialog.to")}: ${user.display}` }}</p>
+          <v-text-field
+            :label="$t('dialog.info')"
+            hide-details="auto"
+            dense
+            appendIcon="mdi-pencil"
+            v-model="info"
+            class="ma-5"
+          ></v-text-field>
+          <div v-if="user">
+            <p>{{ `${$t("dialog.username")}: ${user.display}` }}</p>
+            <v-row>
+              <p>{{ `${$t("dialog.unit")}: ${user.currentUnit}` }}</p>
+              <p>{{ `${$t("dialog.rank")}: ${user.rank}` }}</p>
+            </v-row>
+          </div>
         </v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="red darken-1" text @click="reject">{{
-            $t("dialog.reject")
-          }}</v-btn>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" text @click="approve">{{
             $t("dialog.approve")
@@ -33,7 +45,9 @@
   </div>
 </template>
 <script>
-import { approveUserQuota, rejectUserQuota } from "@/api/quota-approval";
+import { createApprovedQuota } from "@/api/quota-approval";
+import { getUserQuota } from "@/api/quota";
+// import { GBToBytes } from "@/utils/size.convert";
 
 export default {
   data() {
@@ -42,19 +56,25 @@ export default {
         (value) => !!value || this.$t("required"),
         (value) => !isNaN(value) || this.$t("numericValue"),
       ],
+      size: undefined,
+      info: "",
     };
   },
   props: { dialog: { type: Boolean }, user: { type: Object, required: true } },
   methods: {
     approve() {
       if (this.user) {
-        approveUserQuota(this.user.id);
+        const usersQuota = getUserQuota(this.user.id);
+        console.log(usersQuota);
+        // TODO: mul quota by 1024 ^ 3
+        // GBToBytes
+        createApprovedQuota();
       }
       this.dialog = false;
     },
     reject() {
       if (this.user) {
-        rejectUserQuota(this.user.id);
+        // rejectUserQuota(this.user.id);
       }
       this.dialog = false;
     },
