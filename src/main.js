@@ -7,10 +7,11 @@ import i18n from "./i18n";
 import store from './store'
 
 Vue.config.productionTip = false;
+
 (async () => {
   await store.dispatch("fetchConfig");
   await store.dispatch("authenticate");
-
+  
   new Vue({
     vuetify,
     router,
@@ -18,4 +19,4 @@ Vue.config.productionTip = false;
     store,
     render: (h) => h(App)
   }).$mount("#app");
-})()
+})();
