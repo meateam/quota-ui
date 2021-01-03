@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app right dark disable-resize-watcher>
+  <v-navigation-drawer app right dark disable-resize-watcher permanent>
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="title"> Quota UI </v-list-item-title>
