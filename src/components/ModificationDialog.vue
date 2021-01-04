@@ -27,6 +27,7 @@
             <v-row>
               <p>{{ `${$t("dialog.unit")}: ${user.currentUnit}` }}</p>
               <p>{{ `${$t("dialog.rank")}: ${user.rank}` }}</p>
+              <p>{{ `${$t("dialog.currentQuota")}: ${user.usersQuota}` }}</p>
             </v-row>
           </div>
         </v-card-text>
@@ -47,7 +48,7 @@
 <script>
 import { createApprovedQuota } from "@/api/quota-approval";
 import { getUserQuota } from "@/api/quota";
-// import { GBToBytes } from "@/utils/size.convert";
+import { GBToBytes, BytesToGB } from "@/utils/size.convert";
 
 export default {
   data() {
@@ -58,17 +59,17 @@ export default {
       ],
       size: undefined,
       info: "",
+      usersQuota: "?",
     };
   },
   props: { dialog: { type: Boolean }, user: { type: Object, required: true } },
+  mounted() {
+    this.usersQuota = BytesToGB(+getUserQuota(this.user.id));
+  },
   methods: {
     approve() {
       if (this.user) {
-        const usersQuota = getUserQuota(this.user.id);
-        console.log(usersQuota);
-        // TODO: mul quota by 1024 ^ 3
-        // GBToBytes
-        createApprovedQuota();
+        createApprovedQuota(GBToBytes(+this.size), this.info);
       }
       this.dialog = false;
     },

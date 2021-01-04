@@ -15,7 +15,8 @@
     "rank": "Rank",
     "info": "description",
     "approve": "approve",
-    "reject": "reject"
+    "reject": "reject",
+    "currentQuota": "quota"
   },
   "navbar": {
     "search": "Search",

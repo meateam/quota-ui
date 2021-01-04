@@ -15,7 +15,8 @@
     "rank": "דרגה",
     "info": "תיאור הסיבה",
     "approve": "אישור",
-    "reject": "דחיה"
+    "reject": "דחיה",
+    "currentQuota": "אחסון"
   },
   "navbar": {
     "search": "חיפוש",
