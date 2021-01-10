@@ -7,12 +7,12 @@ import { baseURL } from "@/config";
 
 // Full config:  https://github.com/axios/axios#request-config
 axios.defaults.baseURL = baseURL;
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+// axios.defaults.headers.common['Authorization'] = `Bearer ${store.state.auth.token}`;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const _axios = axios.create();
 
-_axios.interceptors.request.use(
+axios.interceptors.request.use(
     function(request) {
         request.headers["Authorization"] = `Bearer ${store.state.auth.token}`;
         if (!store.state.auth.token) return Promise.reject();

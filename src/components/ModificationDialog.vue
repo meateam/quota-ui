@@ -24,10 +24,10 @@
           ></v-text-field>
           <div v-if="user">
             <p>{{ `${$t("dialog.username")}: ${user.display}` }}</p>
-            <v-row>
+            <v-row class="d-flex justify-space-around">
               <p>{{ `${$t("dialog.unit")}: ${user.currentUnit}` }}</p>
               <p>{{ `${$t("dialog.rank")}: ${user.rank}` }}</p>
-              <p>{{ `${$t("dialog.currentQuota")}: ${user.usersQuota}` }}</p>
+              <p>{{ `${$t("dialog.currentQuota")}: ${this.usersQuota} GB` }}</p>
             </v-row>
           </div>
         </v-card-text>
@@ -64,20 +64,17 @@ export default {
   },
   props: { dialog: { type: Boolean }, user: { type: Object, required: true } },
   mounted() {
-    this.usersQuota = BytesToGB(+getUserQuota(this.user.id));
+    getUserQuota(this.user.id).then((quota) => {
+      this.usersQuota = BytesToGB(+quota.limit);
+    });
   },
   methods: {
     approve() {
       if (this.user) {
-        createApprovedQuota(GBToBytes(+this.size), this.info);
+        createApprovedQuota(GBToBytes(+this.size), this.info).then(() => {
+          this.dialog = false;
+        });
       }
-      this.dialog = false;
-    },
-    reject() {
-      if (this.user) {
-        // rejectUserQuota(this.user.id);
-      }
-      this.dialog = false;
     },
   },
 };

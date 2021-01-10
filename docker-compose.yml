@@ -7,6 +7,12 @@ services:
       - "80:80"
     depends_on:
       - api-gateway
+  # drive-ui:
+  #   image: "drivehub.azurecr.io/meateam/drive-ui:develop"
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - api-gateway
   api-gateway:
     image: "drivehub.azurecr.io/meateam/api-gateway:v2.1.0"
     env_file:
@@ -162,3 +168,11 @@ services:
     depends_on:
       - mongo
       - spike-service
+  quota-approval-service:
+    image: 'drivehub.azurecr.io/meateam/quota-approval-service:develop'
+    env_file:
+      - ../kdrive.env
+    ports:
+      - '8093:8080'
+    depends_on:
+      - mongo
