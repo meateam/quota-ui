@@ -18,7 +18,5 @@ export async function rejectUserQuota(requestId) {
 }
 
 export async function createApprovedQuota(size, info) {
-    return Axios.post(quotaApprovalRoute, {
-        params: { size, info },
-    });
+    return Axios.post(`${quotaApprovalRoute}/${size}/${info}`);
 }
